@@ -137,7 +137,7 @@ IPU3 Image Processing Algorithm module for %{name}
 export CFLAGS="%{optflags} -Wno-deprecated-declarations"
 export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
-%meson
+%meson -Dv4l2=true
 %meson_build
 
 %install
@@ -149,7 +149,8 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %files
 %license COPYING.rst
 %dir %{_libdir}/%{name}/
-%{_libdir}/libcamera*.so
+%{_libdir}/libcamera.so
+%{_libdir}/v4l2-compat.so
 %{_libexecdir}/%{name}/
 
 %files devel
@@ -190,6 +191,7 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 * Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-3.20210223git1612841
 - Add Requires to the subpackages
 - Fix description of ipu3 package
+- Build v4l2 compat layer
 
 * Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-2.20210223git1612841
 - Add systemdtap-sdt-devel to BuildRequires to fix F32 build
