@@ -180,7 +180,7 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
-* Mon Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-1.20210223git1612841
+* Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-1.20210223git1612841
 - Add systemdtap-sdt-devel to BuildRequires to fix F32 build
 - Add small patch to make it build with GCC 11
 - Build with -Wno-deprecated-declarations to get the gst plugin to build on F34
