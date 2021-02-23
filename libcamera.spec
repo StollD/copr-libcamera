@@ -11,7 +11,7 @@
 
 Name:    libcamera
 Version: 0.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: A library to support complex camera ISPs
 
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -19,6 +19,7 @@ License: LGPLv2.1+ and GPLv2
 URL:     http://libcamera.org/
 
 Source0: %{forgesource}
+Patch1: 0001-GCC-11.patch
 
 # Tools
 BuildRequires: doxygen
@@ -36,6 +37,7 @@ BuildRequires: python3-sphinx
 # Dependencies
 BuildRequires: boost-devel
 BuildRequires: libatomic
+BuildRequires: systemtap-sdt-devel
 BuildRequires: pkgconfig(libtiff-4)
 BuildRequires: pkgconfig(lttng-ust)
 BuildRequires: pkgconfig(gnutls)
@@ -124,6 +126,10 @@ RkISP1 Image Processing Algorithm module for %{name}
 # TODO: LTO breaks %%meson_test find out why
 %define _lto_cflags %{nil}
 
+# Unbreak the build on Fedora 34
+export CFLAGS="%{optflags} -Wno-deprecated-declarations"
+export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
+
 %meson
 %meson_build
 
@@ -174,6 +180,11 @@ RkISP1 Image Processing Algorithm module for %{name}
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
+* Mon Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-1.20210223git1612841
+- Add systemdtap-sdt-devel to BuildRequires to fix F32 build
+- Add small patch to make it build with GCC 11
+- Build with -Wno-deprecated-declarations to get the gst plugin to build on F34
+
 * Mon Feb 22 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-1.20210222git1612841
 - Updated to latest upstream snapshot
 - Included IPA module for IPU3
