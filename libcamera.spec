@@ -11,7 +11,7 @@
 
 Name:    libcamera
 Version: 0.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: A library to support complex camera ISPs
 
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -79,45 +79,52 @@ Documentation files for %{name}
 
 %package utils
 Summary: Utilities for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description utils
 Small utilities for %{name}
 
 %package utils-gui
 Summary: GUI Utilities for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description utils-gui
 Utillities that require a GUI to use
 
 %package gstreamer
 Summary: Gstreamer plugin to use %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description gstreamer
 Gstreamer plugins for using cameras with %{name}
 
 %package ipa-rpi
 Summary: rpi ipa module for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description ipa-rpi
 Raspberry Pi Image Processing Algorithm module for %{name}
 
 %package ipa-vimc
 Summary: vimc ipa module for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description ipa-vimc
 Vimc Image Processing Algorithm module for %{name}
 
 %package ipa-rkisp1
 Summary: rkisp1 ipa module for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description ipa-rkisp1
 RkISP1 Image Processing Algorithm module for %{name}
 
 %package ipa-ipu3
-Summary: rkisp1 ipa module for %{name}
+Summary: ipu3 ipa module for %{name}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description ipa-ipu3
-RkISP1 Image Processing Algorithm module for %{name}
+IPU3 Image Processing Algorithm module for %{name}
 
 %prep
 %forgeautosetup -p1
@@ -180,7 +187,11 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
-* Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-1.20210223git1612841
+* Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-3.20210223git1612841
+- Add Requires to the subpackages
+- Fix description of ipu3 package
+
+* Tue Feb 23 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-2.20210223git1612841
 - Add systemdtap-sdt-devel to BuildRequires to fix F32 build
 - Add small patch to make it build with GCC 11
 - Build with -Wno-deprecated-declarations to get the gst plugin to build on F34
