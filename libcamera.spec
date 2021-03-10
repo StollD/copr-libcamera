@@ -6,12 +6,12 @@
 #
 # Upstream is still under development so they're not tagging releases yet
 %global forgeurl https://github.com/libcamera-org/libcamera
-%global commit   cc22d2206d83d6ab76172eeadb34f6b825c1ed9a
+%global commit   d3cf0fed3e3139a8ae4b93fe661d4603e1b1115f
 %forgemeta
 
 Name:    libcamera
 Version: 0.0.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: A library to support complex camera ISPs
 
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -188,6 +188,9 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
+* Wed Mar 10 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-5.20210310gitd3cf0fe
+- Updated to latest upstream snapshot
+
 * Sat Feb 27 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-4.20210227gitcc22d22
 - Updated to latest upstream snapshot
 
