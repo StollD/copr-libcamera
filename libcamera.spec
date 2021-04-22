@@ -11,7 +11,7 @@
 
 Name:    libcamera
 Version: 0.0.0
-Release: 8%{?dist}
+Release: 9%{?dist}
 Summary: A library to support complex camera ISPs
 
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -161,6 +161,7 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 
 %files utils
 %{_bindir}/cam
+%{_bindir}/lc-compliance
 
 %files utils-gui
 %{_bindir}/qcam
@@ -187,6 +188,9 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
+* Thu Apr 22 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-9.20210422git9e1bd62
+- Add lc-complicance to %%files
+
 * Thu Apr 22 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-8.20210422git9e1bd62
 - Updated to latest upstream snapshot
 
