@@ -6,12 +6,12 @@
 #
 # Upstream is still under development so they're not tagging releases yet
 %global forgeurl https://github.com/libcamera-org/libcamera
-%global commit   0445a2dc02e8d686566553c50e89a7e873a964aa
+%global commit   35e23837fab8e7837254db32e6a76ddbe4453189
 %forgemeta
 
 Name:    libcamera
 Version: 0.0.0
-Release: 10%{?dist}
+Release: 11%{?dist}
 Summary: A library to support complex camera ISPs
 
 # Library is LGPLv2.1+ and the cam tool is GPLv2
@@ -43,6 +43,7 @@ BuildRequires: pkgconfig(gnutls)
 BuildRequires: pkgconfig(libudev)
 BuildRequires: pkgconfig(libevent_pthreads)
 BuildRequires: pkgconfig(glib-2.0)
+BuildRequires: pkgconfig(gtest)
 
 # Dependencies qcam
 BuildRequires: pkgconfig(Qt5Core)
@@ -149,12 +150,14 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %license COPYING.rst
 %dir %{_libdir}/%{name}/
 %{_libdir}/libcamera.so
+%{_libdir}/libcamera-base.so
 %{_libdir}/v4l2-compat.so
 %{_libexecdir}/%{name}/
 
 %files devel
 %{_includedir}/%{name}/
-%{_libdir}/pkgconfig/camera.pc
+%{_libdir}/pkgconfig/libcamera.pc
+%{_libdir}/pkgconfig/libcamera-base.pc
 
 %files doc
 %doc %{_docdir}/%{name}-%{version}/
@@ -188,6 +191,9 @@ export CXXFLAGS="%{optflags} -Wno-deprecated-declarations"
 %{_libdir}/%{name}/ipa_ipu3.so.sign
 
 %changelog
+* Fri Jul 16 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-11.20210716git35e238
+- Updated to latest upstream snapshot
+
 * Thu May 13 2021 Dorian Stoll <dorian.stoll@tmsp.io> - 0.0.0-10.20210513git0445a2
 - Updated to latest upstream snapshot
 
